@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Contact</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="global-nav">
+            <ul>
+                <li class="nav__item"><a href="./introduce.html">Introduce</a></li>
+                <li class="nav__item"><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact">
+        <h1 class="contact__title">お問い合わせ</h1>
+        <form id="contact__form" class="contact__form" action="test.php" method="post">
+            <p>
+                <label>名前</label>
+                <input id="name" type="text" name="name">
+            </p>
+            <p>
+                <label>メールアドレス</label>
+                <input id="email" type="email" name="email">
+            </p>
+            <p>
+                <label>性別</label>
+                <input class="gender" type="radio" name="gender" value="m" checked>男
+                <input class="gender" type="radio" name="gender" value="f">女
+            </p>
+            <p>
+                <label>年齢</label>
+                <select id="age" size="1" name="age">
+                    <option value="10">10代</option>
+                    <option value="20">20代</option>
+                    <option value="30">30代</option>
+                    <option value="40">40代</option>
+                    <option value="50">50代</option>
+                    <option value="60">60代以上</option>
+                </select>
+            </p>
+            <p>
+                <label>お問い合わせ</label>
+                <textarea id="message" name="message"></textarea>
+            </p>
+            <p>
+                <input type="submit" value="送信">
+            </p>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy;2022 All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        var form = document.querySelector('#contact__form');
+        var formItem = document.querySelectorAll('#contact__form > p');
+        var name = document.querySelector('#name');
+
+        var newElement = document.createElement('p');
+
+        form.addEventListener('blur', () => {
+            for(let i = 0; i < formItem.length; i++){
+                if(formItem[i] === ''){
+                    formItem[i].appendChild(newElement);
+                }
+            }
+        }, true);
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Introduce</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="global-nav">
+            <ul>
+                <li class="nav__item"><a href="./introduce.html">Introduce</a></li>
+                <li class="nav__item"><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="introduce">
+        <h1 id="site-title"></h1>
+        <div class="introduce__content">
+            <div class="content__image">
+                <img src="./images/icon.svg" alt="my-icon">
+            </div>
+            <div class="content__table">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>佐藤　輝</td>
+                        </tr>
+                        <tr>
+                            <th>Company</th>
+                            <td>株式会社電縁</td>
+                        </tr>
+                        <tr>
+                            <th>Birthplace</th>
+                            <td>北海道</td>
+                        </tr>
+                        <tr>
+                            <th>Hobby</th>
+                            <td>ジャズを聴くこと、楽器を吹くこと</td>
+                        </tr>
+                        <tr>
+                            <th>Programming</th>
+                            <td>Python, HTML/CSS, JavaScript, PHP(WordPress)</td>
+                        </tr>
+                        <tr>
+                            <th>Goal</th>
+                            <td>授業で扱った内容は全部理解して自分のものにする</td>
+                        </tr>
+                    </tbody>  
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy;2022 All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        var siteTitle = document.querySelector('#site-title');
+        var header = document.querySelector('.header');
+        var footer = document.querySelector('.footer');
+        var content = document.querySelector('.introduce__content');
+        var txt = 'This is My Self-Introduction.'
+        var appearTime = 100 * txt.length + 500;
+        var blinkTime = 600;
+        var flag = 0;
+
+        // キャレットの点滅処理
+        function blink(){
+            if(flag == 0){
+                siteTitle.classList.add('disappear--border');
+                flag = 1;
+            }else{
+                siteTitle.classList.remove('disappear--border');
+                flag = 0;
+            }
+            // 再起関数
+            setTimeout('blink()', blinkTime);
+        }
+
+        // ページ起動時のフェードイン
+        function appear(elements){
+            elements.forEach((el) => {
+                el.classList.remove('disappear');
+                el.classList.add('appear');
+            });   
+        }
+
+        // ページ読み込み前に要素を消しておく
+        function disappear(elements){
+            elements.forEach((el) => {
+                el.classList.add('disappear');
+            });   
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            disappear([header, footer, content]);
+        });
+        
+        // txtをスプリットして1文字ずつ表示させる
+        txt.split("").forEach((value, i) => {
+            setTimeout(() => {
+                siteTitle.textContent += value;
+            }, 100 * i);
+        });
+
+        setTimeout('blink()', appearTime);
+        setTimeout('appear([header, footer, content])', appearTime);
+    </script>
+</body>
+</html>
